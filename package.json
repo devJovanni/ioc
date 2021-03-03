@@ -1,0 +1,61 @@
+{
+  "name": "ioc",
+  "version": "1.0.0",
+  "description": "dependency injection for javascript",
+  "main": "dist/ioc.js",
+  "module": "dist/ioc.module.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "deno": "./src/index.ts",
+      "browser": "./dist/ioc.module.js",
+      "require": "./dist/ioc.js",
+      "import": "./dist/ioc.mjs",
+      "default": "./dist/ioc.module.js"
+    },
+    "./package.json": "./package.json",
+    "./": "./"
+  },
+  "keywords": [
+    "typescript",
+    "dependency injection",
+    "dependency inversion",
+    "inversion of control",
+    "ioc"
+  ],
+  "scripts": {
+    "prepack": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "microbundle --format es,cjs",
+    "postbuild": "shx cp dist/ioc.module.js dist/ioc.mjs",
+    "clean": "shx rm -rf dist && shx rm -f owja-ioc-*.tgz && shx rm -rf coverage",
+    "test": "jest",
+    "lint": "eslint --ext .ts ./src",
+    "lint:fix": "eslint --ext .ts ./src --fix",
+    "prettier": "prettier src/**/*.ts --check",
+    "prettier:fix": "prettier src/**/*.ts --write"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "jest": "^26.4.2",
+    "microbundle": "^0.12.3",
+    "prettier": "2.1.1",
+    "shx": "^0.3.2",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "mangle": {
+    "regex": "^_"
+  },
+  "files": [
+    "/dist",
+    "!/dist/example",
+    "/src"
+  ]
+}
